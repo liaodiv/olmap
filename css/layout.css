@@ -1,0 +1,33 @@
+html body {
+    height: 100%;
+    width: 100%;
+}
+.leftnav{
+    position: absolute;
+    left: 0;
+    height: calc(100% - 50px);
+    width: 300px;
+    box-sizing: border-box;
+    background-color: #EAF5F3;
+}
+.rightcontent {
+    position: absolute;
+    left: 300px;
+    height: calc(100% - 50px);
+    width: calc(100% - 300px);
+
+    box-sizing: border-box;
+    /*border-top: 20px solid #ffffff;*/
+    /*border-left: 10px solid #ffffff;*/
+}
+.navbar-default{
+    background-color: #00aadd;
+    border-color: #00aadd;
+}
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+.map {
+    height: 100%;
+    width: 100%;
+}

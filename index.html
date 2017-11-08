@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>openlayer</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/layout.css" rel="stylesheet">
+    <link href="css/ol.css" rel="stylesheet">
+</head>
+<body>
+<header role="banner">
+    <nav role="navigation" class="nav navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand">gis</a>
+        </div>
+
+    </nav>
+
+</header>
+<div class="leftnav">
+    <button class="btn btn-danger" data-toggle="collapse" data-target="#demoOne">
+        按钮触发
+    </button>
+    <div id="demoOne" class="collapse">
+        前一段时间一个段子说，某国的网民在因国土问题与中国网民争吵时说，我要打到北京，中国的网民非常淡然地回应，就你那经济水平，交得起过路费吗？这两天新的段子说，李白要是活在今天的话，估计一大半以上他的诗根本写不出来，因为名山大川的门票他根本买不起。
+    </div>
+
+    <div>
+        <a  data-toggle="collapse"  href="#demoTwo">超链接触发</a>
+    </div>
+    <div id="demoTwo" class="collapse in">
+        金正恩将军在朝外记者陪同下视察朝鲜航天局时宣布：10年内，要让朝鲜宇航员登陆太阳！ 一位美国记者问道，太阳温度那么高你们怎么登上去呢？顿时全场鸦雀无声。<br/>
+        大家不知道该怎样回答这个问题。 这时金将军缓缓说道，我们天黑去！顿时全场朝鲜人响起雷鸣般的掌声…… <br/>
+        正在看电视直播的奥巴马，冷笑着对周围的同僚说：这二货，天黑了根本没太阳！ 白宫内也响起了雷鸣般的掌声 ！！
+    </div>
+</div>
+<div class="rightcontent">
+    <div id="map" class="map"></div>
+</div>
+
+<script src="js/lib/require.js" data-main="js/app.js"></script>
+</body>
+</html>
