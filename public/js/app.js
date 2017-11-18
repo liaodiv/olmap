@@ -8,7 +8,6 @@ require.config({
         'bootstrap':'lib/bootstrap.min',
         'backbone':'lib/backbone',
         'underscore':'lib/underscore',
-        'serializeObject':'lib/serializeObject',
         'ol':'lib/ol-debug'
     },
     shim:{
@@ -23,10 +22,15 @@ require.config({
             deps:["jquery"]
         }
     }
-})
+});
 
-require(['jquery','underscore','backbone','ol','bootstrap'],
-    function ($,_,Backbone,ol) {
+require(['jquery','underscore','backbone','ol','views/Navbar','dom-config', 'bootstrap' ],
+    function ($, _, Backbone, ol, Navbar, DomConfig) {
+        var navbar = new Navbar({
+            items : DomConfig.navbarConfig
+        });
+        $('.leftnav').append(navbar.$el);
+
       var map = new ol.Map({
           target:'map',
           layers:[

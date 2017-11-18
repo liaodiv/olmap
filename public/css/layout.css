@@ -10,6 +10,9 @@ html body {
     box-sizing: border-box;
     background-color: #EAF5F3;
 }
+.leftnav .panel-title a {
+    margin-left: 10px;
+}
 .rightcontent {
     position: absolute;
     left: 300px;
