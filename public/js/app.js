@@ -24,24 +24,14 @@ require.config({
     }
 });
 
-require(['jquery','underscore','backbone','ol','views/Navbar','dom-config', 'bootstrap' ],
-    function ($, _, Backbone, ol, Navbar, DomConfig) {
+require(['jquery','underscore','backbone','ol','views/Navbar','views/MapView','dom-config','bootstrap' ],
+    function ($, _, Backbone, ol, Navbar, MapView, DomConfig) {
         var navbar = new Navbar({
             items : DomConfig.navbarConfig
         });
         $('.leftnav').append(navbar.$el);
+        var mapView = new MapView();
+        $('.right-content').append(mapView.$el);
+        mapView.setMap();
 
-      var map = new ol.Map({
-          target:'map',
-          layers:[
-              new ol.layer.Tile({
-                  source:new ol.source.OSM()
-              })
-          ],
-          view:new ol.View({
-              center:ol.proj.fromLonLat([114,24]),
-              zoom:4
-          })
-      })
-        
     });
