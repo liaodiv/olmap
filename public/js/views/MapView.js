@@ -23,6 +23,7 @@ define(['backbone'], function(Backbone) {
                 zoom:4
              });
              this.render();
+             this.addTasklayer();
          },
          render : function() {
             return this;
@@ -41,6 +42,17 @@ define(['backbone'], function(Backbone) {
          },
          getMap : function() {
              return this.map;
+         },
+         addTasklayer:function () {
+
+             var source = ol.source.Vector({
+
+             });
+             $.get('/api/task',function (data) {
+                 var features = new ol.format.GeoJSON().readFeatures(data,{ featureProjection: 'EPSG:4326' });
+                 console.log(features);
+                 
+             })
          }
      });
     return MapView;

@@ -4,7 +4,9 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+const DB = require('./lib/dborm');
 
+const db = new DB();
 
 
 app = express();
@@ -21,24 +23,39 @@ app.get('/index', function (req, res) {
     res.sendfile('./public/index.html');
 });
 
-/*
-app.post('/login', function (request, response) {
-    var user = {
-        username: request.body.UserName,
-        password: request.body.Pwd,
-
-    };
-    console.log(user);
-    db.findByUsername(user, function (error, data) {
-        if(data) {
-            response.send({state: "success", username: data})
-        }else {
-            response.send({state:'error'})
-        }
-    })
-
+app.get('/api/task', (req, res) => {
+    db
+        .getTask()
+        .then((data) => {
+                const arr = [];
+                data.forEach( (datai) => {
+                    arr.push(db.dataTogeojosn(datai));
+                } );
+            res.send(arr)
+        })
+        .catch((error) => {
+           console.log('task查询出错',error);
+        })
 })
-*/
+
+/*
+ app.post('/login', function (request, response) {
+ var user = {
+ username: request.body.UserName,
+ password: request.body.Pwd,
+
+ };
+ console.log(user);
+ db.findByUsername(user, function (error, data) {
+ if(data) {
+ response.send({state: "success", username: data})
+ }else {
+ response.send({state:'error'})
+ }
+ })
+
+ })
+ */
 
 
 var server = app.listen(3001, function () {
