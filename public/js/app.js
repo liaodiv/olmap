@@ -24,24 +24,25 @@ require.config({
     }
 });
 
-require(['jquery','underscore','backbone','ol','views/Navbar','dom-config', 'bootstrap' ],
-    function ($, _, Backbone, ol, Navbar, DomConfig) {
+require(['jquery','underscore','backbone','ol','views/Navbar','views/MapView','dom-config','views/RotateBar','bootstrap' ],
+    function ($, _, Backbone, ol, Navbar, MapView, DomConfig, RotateBar) {
         var navbar = new Navbar({
             items : DomConfig.navbarConfig
         });
         $('.leftnav').append(navbar.$el);
 
-      var map = new ol.Map({
-          target:'map',
-          layers:[
-              new ol.layer.Tile({
-                  source:new ol.source.OSM()
-              })
-          ],
-          view:new ol.View({
-              center:ol.proj.fromLonLat([114,24]),
-              zoom:4
-          })
-      })
-        
+        var mapView = new MapView();
+        $('.right-content').append(mapView.$el);
+        mapView.setMap();
+
+        var rotateBar = new RotateBar({
+            iconName : DomConfig.iconBarConfig[0],
+            map : mapView.getMap()
+        });
+        mapView.addControl(rotateBar, {
+            top : 10,
+            right : 10,
+            position : 'absolute'
+        })
+
     });

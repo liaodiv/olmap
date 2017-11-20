@@ -25,9 +25,11 @@ define([], function() {
             iconName : 'glyphicon glyphicon-star-empty'
         }
     ];
+    var iconBarConfig = ['glyphicon glyphicon-repeat'];
 
     return {
-        navbarConfig : navbarConfig
+        navbarConfig : navbarConfig,
+        iconBarConfig : iconBarConfig
     }
 
 });

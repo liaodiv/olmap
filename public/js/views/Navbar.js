@@ -28,6 +28,7 @@ define(['backbone'], function(Backbone) {
             this.$el.html(this.template());
             this.$('.panel').append(this.createSubList());
         },
+
         createSubList : function() {
             var list = '', that = this;
             _.each(this.items, function(item, idx) {

@@ -1,0 +1,43 @@
+div.icon-container {
+    overflow: hidden;
+}
+div.icon-container>div {
+    float: left;
+}
+div.expand-pane {
+    height: 1.375em;
+    display: none;
+    width: 0em;
+    font-size: 1.14em;
+    line-height: 1.5em;
+    padding-left: 4px;
+    padding-top: 2px;
+}
+div.icon-fold{
+    height: 1.375em;
+    width: 1.375em;
+    background-color: rgba(0,60,136,.5);
+    color: white;
+    line-height: 1.5em;
+    text-align: center;
+    font-size: 1.14em;
+    border-radius: 2px;
+    display: inline-block;
+    top: 0 !important;
+    margin: 1px;
+}
+div.icon-fold:hover {
+    background-color: rgba(0,60,136,.7);
+    cursor: pointer;
+}
+div.icon-container{
+    background-color: rgba(255,255,255,.4);
+    border-radius: 4px;
+    padding: 2px;
+}
+div.expand-pane>span {
+    margin-right: 4px;
+}
+.ol-rotate {
+    display: none !important;
+}
