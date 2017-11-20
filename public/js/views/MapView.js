@@ -6,7 +6,22 @@ define(['backbone'], function(Backbone) {
          attributes : {
              id : 'map'
          },
+         addControl : function(control, position) {
+            if(control && position) {
+                var element = control.$el;
+                element.css(position);
+                control.parent = this;
+                $(this.map.getViewport()).append(element);
+                this.trigger('componentAdded', control);
+                control.trigger('componentAdded', this);
+            }
+
+         },
          initialize : function() {
+             this.view = new ol.View({
+                center : ol.proj.fromLonLat([114, 24]),
+                zoom:4
+             });
              this.render();
          },
          render : function() {
@@ -20,10 +35,8 @@ define(['backbone'], function(Backbone) {
                          source:new ol.source.OSM()
                      })
                  ],
-                 view:new ol.View({
-                     center:ol.proj.fromLonLat([114,24]),
-                     zoom:4
-                 })
+                 loadTilesWhileAnimating: true,
+                 view : this.view
              });
          },
          getMap : function() {
