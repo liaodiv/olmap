@@ -27,11 +27,14 @@ app.get('/api/task', (req, res) => {
     db
         .getTask()
         .then((data) => {
-                const arr = [];
+                const geoCollection = {
+                    type:"FeatureCollection",
+                    features:[]
+                };
                 data.forEach( (datai) => {
-                    arr.push(db.dataTogeojosn(datai));
+                    geoCollection.features.push(db.dataTogeojosn(datai));
                 } );
-            res.send(arr)
+            res.send(geoCollection)
         })
         .catch((error) => {
            console.log('task查询出错',error);
