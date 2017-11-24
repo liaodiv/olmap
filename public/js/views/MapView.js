@@ -19,8 +19,8 @@ define(['backbone'], function (Backbone) {
         },
         initialize: function () {
             this.view = new ol.View({
-                center: ol.proj.fromLonLat([114, 24]),
-                zoom: 4
+                center: [12734150,3570900],
+                zoom: 17
             });
             this.render();
             _.delay(this.addTasklayer.bind(this),1000);
@@ -37,7 +37,16 @@ define(['backbone'], function (Backbone) {
                     })
                 ],
                 loadTilesWhileAnimating: true,
-                view: this.view
+                view: this.view,
+                controls:ol.control.defaults().extend([
+                    new ol.control.ScaleLine(),
+                    new ol.control.MousePosition({
+                        undefinedHTML: 'None',
+                        projection: 'EPSG:4326',
+                        coordinateFormat: ol.coordinate.createStringXY(4),
+                        className: 'ol-mouse-position'
+                    })
+                ])
             });
         },
         getMap: function () {
