@@ -2,7 +2,7 @@
  * first View aha~ created 2017/11/18
  */
 
-define(['backbone'], function(Backbone) {
+define(['backbone','views/mapComponent/LayerView'], function(Backbone,LayerView) {
     var Navbar =  Backbone.View.extend({
         tagName : 'div',
         className : 'pane-group',
@@ -27,6 +27,7 @@ define(['backbone'], function(Backbone) {
         render : function() {
             this.$el.html(this.template());
             this.$('.panel').append(this.createSubList());
+            this.$('.panel').append(new LayerView().render().el);
         },
 
         createSubList : function() {

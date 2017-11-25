@@ -29,6 +29,12 @@ app.get('/api/task', (req, res) => {
         .then((data) => {
                 const geoCollection = {
                     type:"FeatureCollection",
+                    crs: {
+                        type: 'name',
+                        properties: {
+                            'name': 'EPSG:4326'
+                        }
+                    },
                     features:[]
                 };
                 data.forEach( (datai) => {
