@@ -8,7 +8,8 @@ require.config({
         'bootstrap':'lib/bootstrap.min',
         'backbone':'lib/backbone',
         'underscore':'lib/underscore',
-        'ol':'lib/ol-debug'
+        'ol':'lib/ol-debug',
+        'ol-ls':'lib/ol3-layerswitcher'
     },
     shim:{
         'underscore':{
@@ -20,11 +21,14 @@ require.config({
         },
         'bootstrap':{
             deps:["jquery"]
+        },
+        'ol-ls':{
+            deps:['ol']
         }
     }
 });
 
-require(['jquery','underscore','backbone','ol','views/Navbar','views/MapView','dom-config','views/RotateBar','bootstrap' ],
+require(['jquery','underscore','backbone','ol','views/Navbar','views/MapView','dom-config','views/RotateBar','bootstrap' ,'ol-ls'],
     function ($, _, Backbone, ol, Navbar, MapView, DomConfig, RotateBar) {
         var navbar = new Navbar({
             items : DomConfig.navbarConfig

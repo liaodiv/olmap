@@ -3,6 +3,7 @@ define(['backbone'], function (Backbone) {
     var MapView = Backbone.View.extend({
         tagName: 'div',
         map: null,
+        overLayer:null,
         attributes: {
             id: 'map'
         },
@@ -30,12 +31,24 @@ define(['backbone'], function (Backbone) {
             return this;
         },
         setMap: function () {
+            this.setOverlayers();
             this.map = new ol.Map({
                 target: this.el,
                 layers: [
-                    new ol.layer.Tile({
+                   /* new ol.layer.Tile({
                         source: new ol.source.OSM()
-                    })
+                    })*/
+                    new ol.layer.Group({
+                        'title': 'Base maps',
+                        layers: [
+                            new ol.layer.Tile({
+                                title: 'OSM',
+                                type: 'base',
+                                source: new ol.source.OSM()
+                            })
+                        ]
+                    }),
+                    this.overLayer
                 ],
                 loadTilesWhileAnimating: true,
                 view: this.view,
@@ -49,17 +62,26 @@ define(['backbone'], function (Backbone) {
                     })
                 ])
             });
+            var layerSwitcher = new ol.control.LayerSwitcher();
+            this.map.addControl(layerSwitcher);
+        },
+        setOverlayers:function () {
+            this.overLayer = new ol.layer.Group({
+                title: 'Overlays',
+                layers: [
+                ]
+            });
         },
         getMap: function () {
             return this.map;
         },
         addTasklayer: function () {
-
+            var that = this;
             var map = this.getMap();
                 $.get('/api/task', function (data) {
                     var features = new ol.format.GeoJSON().readFeatures(data, {featureProjection: 'EPSG:4326'});
                     var layer = new ol.layer.Vector({
-                        name:'测试图层',
+                        title:'测试图层',
                         visible:true,
                         source: new ol.source.Vector({
                             features: features
@@ -83,7 +105,8 @@ define(['backbone'], function (Backbone) {
                             });
                         }
                     });
-                    map.addLayer(layer);
+                    that.overLayer.getLayers().push(layer)
+                    //map.addLayer(layer);
                     console.log(features);
                     var extent = features[0].getGeometry().getExtent();
 
